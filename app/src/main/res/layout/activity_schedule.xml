@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Schedule">
+
+    <Button
+        android:id="@+id/buttonSetDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Set Date"
+        app:layout_constraintEnd_toEndOf="@+id/buttonSetTime"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSetTime" />
+
+    <TextView
+        android:id="@+id/textViewDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="DD/MM/YYYY"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonSetDate"
+        app:layout_constraintStart_toEndOf="@+id/buttonSetDate"
+        app:layout_constraintTop_toTopOf="@+id/buttonSetDate"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remind Message :"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextMsg"
+        app:layout_constraintEnd_toEndOf="@+id/buttonSetDate"
+        app:layout_constraintStart_toStartOf="@+id/buttonSetDate"
+        app:layout_constraintTop_toTopOf="@+id/editTextMsg" />
+
+    <EditText
+        android:id="@+id/editTextMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/textViewDate"
+        app:layout_constraintStart_toStartOf="@+id/textViewDate"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDate" />
+
+    <Button
+        android:id="@+id/buttonSetAlarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="35dp"
+        android:text="Set Alarm"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextMsg" />
+
+    <Button
+        android:id="@+id/buttonCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="250dp"
+        android:text="Cancel Alarm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.464"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewTime"
+        android:layout_width="36dp"
+        android:layout_height="27dp"
+        android:text="-:-"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonSetTime"
+        app:layout_constraintEnd_toEndOf="@+id/textViewDate"
+        app:layout_constraintStart_toStartOf="@+id/textViewDate"
+        app:layout_constraintTop_toTopOf="@+id/buttonSetTime" />
+
+    <Button
+        android:id="@+id/buttonSetTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
+        android:layout_marginTop="16dp"
+        android:text="Set Time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

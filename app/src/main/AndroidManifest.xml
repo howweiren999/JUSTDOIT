@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.FindFun">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/fflogo"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/fflogo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".AddPrefActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.FindFun.SettingsActivity" />
+        </activity>
+        <activity android:name=".Profile"
+            android:label="Profile"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".SignIn"></activity>
+        <activity android:name=".HomePage"></activity>
+        <activity android:name=".SignUp" />
+        <activity android:name=".Schedule" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <receiver
+            android:name=".TimerExpiredReceiver"
+            android:enabled="true"
+            android:exported="false" />
+        <receiver
+            android:name=".TimerNotificationActionReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="stop" />
+                <action android:name="pause" />
+                <action android:name="resume" />
+                <action android:name="start" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".MyAlarmReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="MyAlarmReceiver"/>
+
+            </intent-filter>
+        </receiver>
+        <activity
+            android:name=".SettingsActivity"
+            android:parentActivityName=".TimerActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.FindFun.TimerActivity" />
+        </activity>
+        <activity
+            android:name=".TimerActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.FindFun.HomePage" />
+        </activity>
+        <activity android:name=".ItemActivity"/>
+        <activity
+            android:name=".DashboardActivity"
+            android:parentActivityName=".HomePage"></activity>
+
+    </application>
+
+</manifest>

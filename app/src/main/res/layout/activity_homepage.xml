@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/buttonToDoList"
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            android:background="@drawable/todolist" />
+
+        <Button
+            android:id="@+id/buttonTimeActivity"
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            android:background="@drawable/timeractivity" />
+
+        <Button
+            android:id="@+id/buttonScheduleReminder"
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            android:background="@drawable/schedule" />
+
+        <Button
+            android:id="@+id/buttonUserProfile"
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            android:background="@drawable/userprofile" />
+
+        <Button
+            android:id="@+id/buttonLogOut"
+            android:layout_width="410dp"
+            android:layout_height="190dp"
+            android:background="@drawable/logout" />
+    </LinearLayout>
+</ScrollView>
