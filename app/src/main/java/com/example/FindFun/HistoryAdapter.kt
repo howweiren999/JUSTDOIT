@@ -27,8 +27,8 @@ class HistoryAdapter internal constructor(context: Context) : RecyclerView.Adapt
 
     }
     inner class HistoryViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
-        val textViewToDoName: TextView =itemView.findViewById(R.id.textViewTodoName)
-        val textViewDateCreated: TextView=itemView.findViewById(R.id.textViewDateCreated)
+        val textViewToDoName: TextView =itemView.findViewById(R.id.textViewHMessage)
+        val textViewDateCreated: TextView=itemView.findViewById(R.id.textViewHDate)
     }
     internal fun setHistoryRecords(historyRecords: List<ToDoList>) {
         this.historyRecords = historyRecords

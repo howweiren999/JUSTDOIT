@@ -32,6 +32,8 @@
     <string name="dateCreated">Date Created</string>
     <string name="url_todolist_read_one">todolist/read_one.php</string>
     <string name="url_todolist_read">todolist/read.php</string>
+    <string name="url_scheduleList_create">scheduleList/create.php</string>
+    <string name="url_scheduleList_read">scheduleList/read.php</string>
 
 
 </resources>

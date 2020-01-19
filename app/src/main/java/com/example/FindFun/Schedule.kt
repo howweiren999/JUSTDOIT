@@ -6,18 +6,24 @@ import android.app.PendingIntent
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.DatePicker
 import android.widget.TimePicker
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import kotlinx.android.synthetic.main.activity_schedule.*
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 const val EXTRA_MESSAGE = "EXTRA_MESSAGE"
+
 
 class Schedule : AppCompatActivity() {
 
@@ -53,7 +59,7 @@ class Schedule : AppCompatActivity() {
             cal.set(Calendar.YEAR,year)
             cal.set(Calendar.MONTH,month)
             cal.set(Calendar.DAY_OF_MONTH,dayOfMonth)
-            textViewDate.text = setMyDateFormat()
+            textViewHDate.text = setMyDateFormat()
         }
     }
 
@@ -65,20 +71,33 @@ class Schedule : AppCompatActivity() {
         var mAlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val requestCode = 100
         var mPendingIntent: PendingIntent? = null
+        var token = getSharedPreferences("info", Context.MODE_PRIVATE)
 
+        val userName = token.getString("userName"," ")
+
+
+        buttonHistory.setOnClickListener{
+            val intent = Intent(this, ScheduleHistory::class.java)
+
+        //start the second activity. With no return value
+        startActivity(intent)
+    }
 
         buttonSetAlarm.setOnClickListener{
 
             var setTime = Calendar.getInstance()
             var schduleTime = textViewTime.text.split(":")
-            var scheduleDate = textViewDate.text.split("/")
+            var scheduleDate = textViewHDate.text.split("/")
+            val currentDateTimeString = DateFormat.getDateTimeInstance().format(Date())
+            val currentDateTimeStringNoSpace = currentDateTimeString.replace("\\s".toRegex(), "")
+
 
             setTime.set(Calendar.HOUR_OF_DAY,schduleTime[0].toInt())
             setTime.set(Calendar.MINUTE,schduleTime[1].toInt())
             setTime.set(Calendar.SECOND,0)
 
-            if(textViewDate.text =="DD/MM/YYYY")
-                textViewDate.text = "Today"
+            if(textViewHDate.text =="DD/MM/YYYY")
+                textViewHDate.text = "Today"
             else{
                 setTime.set(Calendar.YEAR, scheduleDate[2].toInt())
                 setTime.set(Calendar.MONTH, scheduleDate[1].toInt())
@@ -89,8 +108,22 @@ class Schedule : AppCompatActivity() {
             sentIntent.putExtra(EXTRA_MESSAGE,editTextMsg.text.toString())
             mPendingIntent = PendingIntent.getBroadcast(this,requestCode,sentIntent,PendingIntent.FLAG_UPDATE_CURRENT)
             mAlarmManager.set(AlarmManager.RTC_WAKEUP, setTime.timeInMillis,mPendingIntent)
-            Toast.makeText(this,"Schedule Reminder set up from ${textViewTime.text}:00 in ${textViewDate.text}"
-                ,Toast.LENGTH_SHORT).show()}
+            Toast.makeText(this,"Schedule Reminder set up from ${textViewTime.text}:00 in ${textViewHDate.text}"
+                ,Toast.LENGTH_SHORT).show()
+
+
+
+
+            createSchduleList(
+                ScheduleList(
+                    textViewTime.text.toString()+"|"+textViewHDate.text.toString(),
+                    editTextMsg.text.toString(),
+                    userName.toString(),
+
+                    currentDateTimeStringNoSpace
+                )
+            )
+        }
 
 
 
@@ -118,6 +151,44 @@ class Schedule : AppCompatActivity() {
             }
         }
         )
+    }
+
+    private fun createSchduleList(scheduleList: ScheduleList) {
+        val url = getString(R.string.url_server) + getString(R.string.url_scheduleList_create) +
+                "?date=" + scheduleList.date + "&message=" + scheduleList.message + "&userName=" + scheduleList.userName + "&createdDate=" + scheduleList.createdDate
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            Response.Listener { response ->
+                try {
+                    if (response != null) {
+                        val success: String = response.get("success").toString()
+
+                        if (success.equals("1")) {
+                            Toast.makeText(applicationContext, "Record saved", Toast.LENGTH_LONG).show()
+                            //Add record to user list
+                            //userList.add(user)
+                            //Explicit Intent
+                            val intent = Intent(this, HomePage::class.java)
+                            //start the second activity. With no return value
+                            startActivity(intent)
+                        } else {
+                            Toast.makeText(applicationContext,"Record not saved", Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+                } catch (e: Exception) {
+                    Log.d("Main", "Response: %s".format(e.message.toString()))
+                }
+            },
+            Response.ErrorListener { response ->
+                Log.d("Main", "Response: %s".format(response.message.toString()))
+            }
+        )
+        // Access the RequestQueue through your singleton class.
+        jsonObjectRequest.tag = SignUp.TAG
+        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
+
     }
 }
 

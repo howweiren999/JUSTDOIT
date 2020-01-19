@@ -16,7 +16,7 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonSetTime" />
 
     <TextView
-        android:id="@+id/textViewDate"
+        android:id="@+id/textViewHDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
@@ -46,9 +46,9 @@
         android:layout_marginTop="60dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/textViewDate"
-        app:layout_constraintStart_toStartOf="@+id/textViewDate"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDate" />
+        app:layout_constraintEnd_toEndOf="@+id/textViewHDate"
+        app:layout_constraintStart_toStartOf="@+id/textViewHDate"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHDate" />
 
     <Button
         android:id="@+id/buttonSetAlarm"
@@ -83,8 +83,8 @@
         android:layout_height="27dp"
         android:text="-:-"
         app:layout_constraintBottom_toBottomOf="@+id/buttonSetTime"
-        app:layout_constraintEnd_toEndOf="@+id/textViewDate"
-        app:layout_constraintStart_toStartOf="@+id/textViewDate"
+        app:layout_constraintEnd_toEndOf="@+id/textViewHDate"
+        app:layout_constraintStart_toStartOf="@+id/textViewHDate"
         app:layout_constraintTop_toTopOf="@+id/buttonSetTime" />
 
     <Button
@@ -97,5 +97,13 @@
         android:text="Set Time"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="History"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

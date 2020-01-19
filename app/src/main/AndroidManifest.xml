@@ -85,7 +85,9 @@
         <activity
             android:name=".ToDoListHistory"
             android:parentActivityName=".DashboardActivity"/>
-
+        <activity
+            android:name=".ScheduleHistory"
+            android:parentActivityName=".Schedule"/>
     </application>
 
 </manifest>

@@ -1,7 +1,6 @@
 package com.example.FindFun
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -32,8 +31,8 @@ class ToDoListHistory : AppCompatActivity() {
                         val strResponse = response.toString()
                         val jsonResponse  = JSONObject(strResponse)
 
-                        textViewTodoName.text = jsonResponse.getString("todoName")
-                        textViewDateCreated.text = jsonResponse.getString("createdAt")
+                        textViewHMessage.text = jsonResponse.getString("todoName")
+                        textViewHDate.text = jsonResponse.getString("createdAt")
 
                         //userList.add(user)
 
