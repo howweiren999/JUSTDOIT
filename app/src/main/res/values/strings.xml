@@ -25,6 +25,13 @@
     <string name ="timerPrefURL">timerpref/create.php</string>
     <string name="Use">Use</string>
     <string name="url_timerpref_read">timerpref/read.php</string>
+    <string name="url_todolist_create">todolist/create.php</string>
+    <string name="viewHistory">History</string>
+    <string name="addToHist">Add</string>
+    <string name="ToDoName">ToDoName</string>
+    <string name="dateCreated">Date Created</string>
+    <string name="url_todolist_read_one">todolist/read_one.php</string>
+    <string name="url_todolist_read">todolist/read.php</string>
 
 
 </resources>

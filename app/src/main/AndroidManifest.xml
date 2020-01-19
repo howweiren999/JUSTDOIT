@@ -73,10 +73,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.FindFun.HomePage" />
         </activity>
-        <activity android:name=".ItemActivity"/>
+        <activity
+            android:name=".ItemActivity"
+            android:parentActivityName=".DashboardActivity"/>
         <activity
             android:name=".DashboardActivity"
             android:parentActivityName=".HomePage"></activity>
+        <activity
+            android:name=".HistoryActivity"
+            android:parentActivityName=".HomePage"/>
+        <activity
+            android:name=".ToDoListHistory"
+            android:parentActivityName=".DashboardActivity"/>
 
     </application>
 
