@@ -41,6 +41,7 @@ class DashboardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_dashboard)
         var token = getSharedPreferences("info", Context.MODE_PRIVATE)
 
+        val current=LocalDate.now()
         title = "Dashboard"
         dbHandler = DBHandler(this)
         rv_dashboard.layoutManager = LinearLayoutManager(this)
@@ -56,6 +57,11 @@ class DashboardActivity : AppCompatActivity() {
                     val toDo = ToDo()
                     toDo.name = toDoName.text.toString()
                     dbHandler.addToDo(toDo)
+
+                    val userName=token.getString("userName","")
+                    createTodo(
+                        ToDoList(toDo.name, current.toString(), userName.toString())
+                    )
 
                     refreshList()
                 }
@@ -86,6 +92,7 @@ class DashboardActivity : AppCompatActivity() {
             if (toDoName.text.isNotEmpty()) {
                 toDo.name = toDoName.text.toString()
                 dbHandler.updateToDo(toDo)
+
                 refreshList()
             }
         }
@@ -127,13 +134,7 @@ class DashboardActivity : AppCompatActivity() {
                 intent.putExtra(INTENT_TODO_NAME,list[p1].name)
                 activity.startActivity(intent)
             }
-            holder.addHistory.setOnClickListener{
-                val sharedPref=activity?.getSharedPreferences("info", Context.MODE_PRIVATE)
-                val userName=sharedPref.getString("userName","")
-                activity.createTodo(
-                    ToDoList(list[p1].name, current.toString(), userName.toString())
-                )
-            }
+
 
             holder.menu.setOnClickListener {
                 val popup = PopupMenu(activity,holder.menu)
@@ -166,7 +167,7 @@ class DashboardActivity : AppCompatActivity() {
         class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
             val toDoName: TextView = v.findViewById(R.id.tv_todo_name)
             val menu : ImageView = v.findViewById(R.id.iv_menu)
-            val addHistory:Button=v.findViewById(R.id.buttonAddToHistory)
+
         }
     }
     private fun createTodo(toDoList: ToDoList) {
